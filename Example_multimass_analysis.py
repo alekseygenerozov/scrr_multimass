@@ -5,7 +5,7 @@ import numpy as np
 
 
 agrid=np.logspace(-3, 0, 100)
-agrid=agrid[:43]
+agrid=agrid[:54]
 times=np.empty_like(agrid)
 
 fig,ax=plt.subplots(figsize=(10,9))
