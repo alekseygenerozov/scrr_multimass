@@ -10,8 +10,10 @@ Diffusion coefficients (drr_mulitmass.py)
 DRR
 
 1. _drr and _drr_lnnp take the component number as one of their arguments. The diffusion coefficients are computed component by component, and then summed together in __call__.  Note that the key in _drr_lnnp_cache includes the component number.
+
+
     Examples
-Example_multimass.py: saves diffusion coefficients for a grid of semi-major axes to files (djj_multimass_*.csv: each file corresponds to a different semi-major axis and contains two columns: j and the diffusion coefficient). 
+1. Example_multimass.py: saves diffusion coefficients for a grid of semi-major axes to files (djj_multimass_*.csv: each file corresponds to a different semi-major axis and contains two columns: j and the diffusion coefficient). 
 Currently we have the default BW cusp with an r^-2.5 BH cusp with 1% of the mass inside of rh on top. 
 
-Example_multimass_analysis.py: Computes j-averaged scalar resonant relaxation time (as described in Bar-Or and Fouvry 2018).
+1. Example_multimass_analysis.py: Computes j-averaged scalar resonant relaxation time (as described in Bar-Or and Fouvry 2018).
