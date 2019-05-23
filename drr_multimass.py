@@ -300,7 +300,7 @@ class DRR_Multimass(Cusp_Multimass):
         return drr
 
 
-def integrate(func, integ, neval=1e4):
+def integrate(func, integ, neval=1e3):
     integ(func, nitn=10, neval=neval)
     result = integ(func, nitn=10, neval=neval)
     try:
