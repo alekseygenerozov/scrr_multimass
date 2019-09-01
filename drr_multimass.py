@@ -24,7 +24,7 @@ from numpy import mod
 from numpy import sqrt
 from scipy import special
 
-from cusp_multimass import Cusp_Multimass
+from scrr_multimass.cusp_multimass import Cusp_Multimass
 
 Res = namedtuple('Res', ('l', 'n', 'np', 'comp', 'neval'))
 

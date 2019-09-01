@@ -10,7 +10,7 @@ from numba import jit
 from numpy import pi
 from scipy.special import eval_legendre
 
-from utils import interp_reg_loglog
+from scrr_multimass.utils import interp_reg_loglog
 
 M0 = M_sun
 # Define physical constants
