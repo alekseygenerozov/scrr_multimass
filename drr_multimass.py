@@ -228,6 +228,41 @@ class DRR_Multimass(Cusp_Multimass):
                          self.nu_r(self.sma) ** 2 / (self.mbh_mass/self.star_mass[comp])**2.0 *
                          self.total_number_of_stars(comp))
 
+    def _drr_pol(self, j, omega, lnnp, comp, neval=1e3, seed=None):
+        l, n, n_p = lnnp
+        ratio = n / n_p
+        get_jf = self._res_intrp(ratio)(omega * ratio)
+        if seed is not None:
+            # make a unique seed
+            np.random.seed([seed, l, n, 2 * l + n_p])
+
+        pi = np.pi
+
+        @vegas.batchintegrand
+        def c_lnnp(x):
+            true_anomaly = x[:, :-1].T * pi
+            sma_f = self.inverse_cumulative_a(x[:, -1], comp)
+            jf = get_jf(sma_f)
+            res = np.zeros(x.shape[0], float)
+            ix = np.where(jf > 0)[0]
+            if len(ix) > 0:
+                res[ix] = self._integrand(j, sma_f[ix], jf[ix], lnnp,
+                                          true_anomaly[:, ix])
+            return res
+
+        self.c_lnnp = c_lnnp
+        integ = vegas.Integrator(5 * [[0, 1]])
+
+        if get_jf is None:
+            result = np.zeros(2)
+        else:
+            result = np.array(integrate(c_lnnp, integ, neval))
+
+        return result * (8 * pi * n *
+                         _a2_norm_factor(*lnnp) *
+                         self.nu_r(self.sma) ** 2 * self.star_mass[comp]*mass_test/ (self.mbh_mass)**2.0
+                         self.total_number_of_stars(comp))
+
     @property
     def l_max(self):
         try:

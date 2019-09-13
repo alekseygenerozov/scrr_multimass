@@ -1,4 +1,4 @@
-from drr_multimass import DRR_Multimass
+from scrr_multimass.drr_multimass import DRR_Multimass
 import matplotlib.pyplot as plt
 from scipy.interpolate import InterpolatedUnivariateSpline as IUS
 import numpy as np
