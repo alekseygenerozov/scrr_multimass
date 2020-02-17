@@ -222,7 +222,12 @@ class Cusp_Multimass(object):
         """
         d_nu_gr = 6 * self.gr_factor * (self.rg / a) / (j * j * j)
         d_nu_mass = - self.stellar_mass(a, comp) / self.mbh_mass * self._gp(j, comp)
-        return (d_nu_gr - d_nu_mass) * self.nu_r(a)
+        d_nu_tot=-d_nu_mass*self.nu_r(a)
+        if comp==0:
+        	d_nu_tot+=d_nu_gr*self.nu_r(a)
+        return d_nu_tot
+
+        #return (d_nu_gr - d_nu_mass) * self.nu_r(a)
 
     def d_nu_p(self, a, j):
         r"""
